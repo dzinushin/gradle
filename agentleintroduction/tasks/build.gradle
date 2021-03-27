@@ -1,0 +1,28 @@
+
+/*
+ *  - A task is an object
+ *    - A task has an API
+ *  - A task has a list of activities
+ *  - Tasks form a Directed Acyclic Graph
+ *  - A Gradle build is...a program
+ */
+
+task hello
+task world
+
+task helloWorld {
+  dependsOn = [ world, hello ]
+}
+
+world {
+  dependsOn << hello
+  doLast { 
+    println "world"
+  }
+}
+
+hello {
+  doLast {
+    print "hello, "
+  }
+}
